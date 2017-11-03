@@ -115,6 +115,15 @@ variable "rules" {
     all-icmp      = [-1, -1, "icmp", "All IPV4 ICMP"]
     all-ipv6-icmp = [-1, -1, 58, "All IPV6 ICMP"]
 
+    #ELK
+    kibana-tcp   = [9000, 9000, "tcp", "kibana"]
+    logstash-tcp = [5043, 5044, "tcp", "logstash"]
+
+    #misc
+    portainer-tcp = [5601, 5601, "tcp", "portainer"]
+    mongodb-tcp   = [27017, 27017, "tcp", "mongodb"]
+    swarm-vis-tcp = [8000, 8000, "tcp", "swarm-vis"]
+
     # This is a fallback rule to pass to lookup() as default. It does not open anything, because it should never be used.
     _ = ["", "", ""]
   }
@@ -248,6 +257,12 @@ variable "auto_groups" {
 
     zookeeper = {
       ingress_rules     = ["zookeeper-2181-tcp", "zookeeper-2888-tcp", "zookeeper-3888-tcp", "zookeeper-jmx-tcp"]
+      ingress_with_self = ["all-all"]
+      egress_rules      = ["all-all"]
+    }
+
+    elk = {
+      ingress_rules     = ["kibana-tcp", "logstash-tcp"]
       ingress_with_self = ["all-all"]
       egress_rules      = ["all-all"]
     }

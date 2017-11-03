@@ -7,6 +7,7 @@ List of Security Groups implemented as Terraform modules
 * [consul](consul)
 * [docker-swarm](docker-swarm)
 * [elasticsearch](elasticsearch)
+* [elk](elk)
 * [http-80](http-80)
 * [https-443](https-443)
 * [kafka](kafka)
